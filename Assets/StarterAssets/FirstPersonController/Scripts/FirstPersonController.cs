@@ -59,6 +59,7 @@ namespace StarterAssets
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
+		private float _crouchHeight = 1f;
 
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
@@ -155,6 +156,9 @@ namespace StarterAssets
 		{
 			// set target speed based on move speed, sprint speed and if sprint is pressed
 			float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+
+			// halves target speed if crouched
+			targetSpeed = _input.crouch ? targetSpeed / 2 : targetSpeed;
 
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
